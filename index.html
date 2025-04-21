@@ -20,6 +20,7 @@
     }
     header .logo {
       font-size: 2em;
+      font-weight: bold;
       margin-bottom: 10px;
     }
     header img {
@@ -144,6 +145,8 @@
       const origem = document.getElementById('origem').value;
       const destino = document.getElementById('destino').value;
       const data = document.getElementById('data').value;
+      const [year, month, day] = data.split("-");
+      const dataFormatada = `${day}/${month}/${year}`;
       const itens = document.getElementById('itens').value;
 
       const tipoOrigem = document.querySelector('input[name="tipoOrigem"]:checked').value;
@@ -164,11 +167,11 @@
         detalhesDestino += ` | Elevador: ${elevadorDestino} | Andar: ${andarDestino}`;
       }
 
-      const mensagem = `Olá, meu nome é ${nome}.
-      Gostaria de solicitar um orçamento de mudança:
-      De: ${origem} 
-      Para: ${destino}
-      na data ${data}.
+const mensagem = `Olá, meu nome é ${nome}.
+Gostaria de solicitar um orçamento de mudança:
+De: ${origem} 
+Para: ${destino}
+Data: ${dataFormatada}.
       
 ${detalhesOrigem}
 
