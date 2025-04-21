@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anderson Mudanças e Transporte</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #007bff;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header .logo {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    header img {
+      max-width: 150px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    section {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .services, .about, .contact {
+      margin-top: 30px;
+    }
+    .form-field {
+      margin-bottom: 10px;
+    }
+    .form-field input, .form-field textarea, .form-field select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .form-field label {
+      display: block;
+      margin-top: 5px;
+    }
+    .form-inline {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    footer {
+      background: #eee;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="A_logo_for_Anderson_Mudanças_e_Transporte_features.png" alt="Logo Anderson Mudanças e Transporte">
+    <div class="logo">Anderson Mudanças e Transporte</div>
+    <h1>Transporte com segurança e confiança</h1>
+  </header>
+
+
+  <section class="contact">
+    <h2>Solicite um Orçamento</h2>
+    <div class="form-field">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+    </div>
+    <div class="form-field">
+      <input type="text" id="origem" placeholder="Cidade origem" required>
+    </div>
+    <div class="form-field">
+      <label>Tipo de imóvel de retirada:</label>
+      <div class="form-inline">
+        <label><input type="radio" name="tipoOrigem" value="Casa" checked> Casa</label>
+        <label><input type="radio" name="tipoOrigem" value="Apartamento"> Apartamento</label>
+      </div>
+      <div id="detalhesApartamentoOrigem" style="display:none;">
+        <label for="elevadorOrigem">Possui elevador:</label>
+        <select id="elevadorOrigem">
+          <option value="Sim">Sim</option>
+          <option value="Não">Não</option>
+        </select>
+        <input type="number" id="andarOrigem" placeholder="Andar">
+      </div>
+    </div>
+    <div class="form-field">
+      <input type="text" id="destino" placeholder="Cidade destino" required>
+    </div>
+    <div class="form-field">
+      <label>Tipo de imóvel de destino:</label>
+      <div class="form-inline">
+        <label><input type="radio" name="tipoDestino" value="Casa" checked> Casa</label>
+        <label><input type="radio" name="tipoDestino" value="Apartamento"> Apartamento</label>
+      </div>
+      <div id="detalhesApartamentoDestino" style="display:none;">
+        <label for="elevadorDestino">Possui elevador:</label>
+        <select id="elevadorDestino">
+          <option value="Sim">Sim</option>
+          <option value="Não">Não</option>
+        </select>
+        <input type="number" id="andarDestino" placeholder="Andar">
+      </div>
+    </div>
+      <label for="itens">Data prevista da mudança:</label>
+
+    <div class="form-field">
+      <input type="date" id="data" required>
+    </div>
+    <div class="form-field">
+      <label for="itens">Lista dos itens da mudança:</label>
+      <textarea id="itens" rows="4" placeholder="Ex: sofá, cama, geladeira, caixas..."></textarea>
+    </div>
+    <button onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
+  </section>
+
+  <footer>
+    Contato: (14) 99675-6241 | WhatsApp Disponível<br>
+    &copy; 2025 Anderson Mudanças e Transporte
+  </footer>
+
+  <script>
+    function enviarWhatsApp() {
+      const nome = document.getElementById('nome').value;
+      const origem = document.getElementById('origem').value;
+      const destino = document.getElementById('destino').value;
+      const data = document.getElementById('data').value;
+      const itens = document.getElementById('itens').value;
+
+      const tipoOrigem = document.querySelector('input[name="tipoOrigem"]:checked').value;
+      const elevadorOrigem = document.getElementById('elevadorOrigem').value;
+      const andarOrigem = document.getElementById('andarOrigem').value;
+
+      const tipoDestino = document.querySelector('input[name="tipoDestino"]:checked').value;
+      const elevadorDestino = document.getElementById('elevadorDestino').value;
+      const andarDestino = document.getElementById('andarDestino').value;
+
+      let detalhesOrigem = `Tipo de imóvel de retirada: ${tipoOrigem}`;
+      if (tipoOrigem === 'Apartamento') {
+        detalhesOrigem += ` | Elevador: ${elevadorOrigem} | Andar: ${andarOrigem}`;
+      }
+
+      let detalhesDestino = `Tipo de imóvel de destino: ${tipoDestino}`;
+      if (tipoDestino === 'Apartamento') {
+        detalhesDestino += ` | Elevador: ${elevadorDestino} | Andar: ${andarDestino}`;
+      }
+
+      const mensagem = `Olá, meu nome é ${nome}.
+      Gostaria de solicitar um orçamento de mudança:
+      De: ${origem} 
+      Para: ${destino}
+      na data ${data}.
+      
+${detalhesOrigem}
+
+${detalhesDestino}
+
+Itens da mudança:
+${itens}`;
+      const numero = '5514996756241';
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+
+    const tipoOrigemRadios = document.getElementsByName('tipoOrigem');
+    tipoOrigemRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.getElementById('detalhesApartamentoOrigem').style.display = radio.value === 'Apartamento' ? 'block' : 'none';
+      });
+    });
+
+    const tipoDestinoRadios = document.getElementsByName('tipoDestino');
+    tipoDestinoRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.getElementById('detalhesApartamentoDestino').style.display = radio.value === 'Apartamento' ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
