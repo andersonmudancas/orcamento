@@ -1,257 +1,265 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <title>Controle de Viagens</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anderson Mudanças e Transporte</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: #BE1E21;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    header .logo {
-      font-size: 2em;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    header img {
-      max-width: 150px;
-      display: block;
-      margin: 0 auto 10px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    section {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .services, .about, .contact {
-      margin-top: 30px;
-    }
-    .form-field {
-      margin-bottom: 10px;
-    }
-    .form-field input, .form-field textarea, .form-field select {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-    .form-field label {
-      display: block;
-      margin-top: 5px;
-    }
-    .form-inline {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
+    body { font-family: Arial, sans-serif; margin: 20px; background: #eef2f3; }
+    .formulario { display: flex; flex-wrap: wrap; gap: 10px; }
+    .formulario input, .formulario button, .formulario select {
+      flex: 1 1 250px;
+      min-width: 200px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
     }
     button {
-      background: #25D366;
+      background-color: #4caf50;
       color: white;
       border: none;
-      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 1em;
+      transition: 0.3s;
     }
-    footer {
-      background: #eee;
-      text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
+    button:hover { background-color: #45a049; }
+    #resumo {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+      border-radius: 10px;
+      overflow-x: auto;
+      display: block;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .oculto {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">Anderson Mudanças e Transporte</div>
-    <h1>Transporte com segurança e confiança</h1>
-  </header>
+  <h1>Controle de Viagens</h1>
+  <div class="formulario">
+    <input id="cliente" placeholder="Nome do Cliente" />
+    <input id="contato" placeholder="Contato" />
+    <input id="data" type="date" />
+    <input id="origem" placeholder="Origem" />
+    <input id="destino" placeholder="Destino" />
+    <input id="kmInicial" type="number" placeholder="KM Inicial" />
+    <input id="kmFinal" type="number" placeholder="KM Final" />
+    <input id="combustivel" type="number" placeholder="Combustível (R$)" />
+    <input id="pedagios" type="number" placeholder="Pedágios (R$)" />
+    <input id="outros" type="number" placeholder="Outros (R$)" />
+    <input id="ajudante" type="number" placeholder="Ajudante (R$)" />
+    <input id="frete" type="number" placeholder="Valor do Frete (R$)" />
+    <button id="botao-adicionar" onclick="adicionarOuSalvarViagem()">Adicionar Viagem</button>
+    <button onclick="exportarParaExcel()">Exportar para Excel</button>
+    <button onclick="limparTabela()">Limpar Tabela</button>
+  </div>
+  <div class="formulario" style="margin-top: 20px;">
+    <input id="filtroMes" type="month" onchange="filtrarPorMes()" />
+  </div>
+  <div id="resumo">
+    <h2>Resumo</h2>
+    <p>Total de Viagens: <span id="resumo-viagens">0</span></p>
+    <p>Total de KM Rodado: <span id="resumo-km">0</span> km</p>
+    <p>Média de Custo por KM: R$ <span id="resumo-media-km">0.00</span></p>
+    <p>Total de Frete: R$ <span id="resumo-frete">0.00</span></p>
+    <p>Total de Gastos: R$ <span id="resumo-gastos">0.00</span></p>
+    <p>Total de Saldo Final: R$ <span id="resumo-saldo">0.00</span></p>
+  </div>
+  <table id="tabela">
+    <thead>
+      <tr>
+        <th>Cliente</th><th>Contato</th><th>Data</th><th>Origem → Destino</th><th>KM Rodado</th>
+        <th>Combustível</th><th>Pedágios</th><th>Outros</th><th>Ajudante</th><th>Gastos Totais</th>
+        <th>Custo/KM</th><th>Frete</th><th>Saldo Final</th>
+        <th class="oculto">KM Inicial</th><th class="oculto">KM Final</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-  <section class="contact">
-    <h2>Solicite um Orçamento</h2>
-    <div class="form-field">
-      <label>Seu nome</label>
-      <input type="text" id="nome" placeholder="Seu nome" required>
-    </div>
-    <div class="form-field">
-      <label>Cidade Origem</label>
-      <input type="text" id="origem" placeholder="Cidade origem" required>
-    </div>
-    <div class="form-field">
-      <label>Tipo de imóvel de retirada:</label>
-      <div class="form-inline">
-        <label><input type="radio" name="tipoOrigem" value="Casa" checked> Casa</label>
-        <label><input type="radio" name="tipoOrigem" value="Apartamento"> Apartamento</label>
-      </div>
-      <div id="detalhesApartamentoOrigem" style="display:none;">
-        <label for="elevadorOrigem">Possui elevador:</label>
-        <div class="form-inline">
-          <label><input type="radio" name="elevadorOrigem" value="Sim" checked> Sim</label>
-          <label><input type="radio" name="elevadorOrigem" value="Não"> Não</label>
-        </div>
-        <input type="number" id="andarOrigem" placeholder="Andar" style="margin-top: 10px;">
-      </div>
-    </div>
-    <div class="form-field">
-      <label>Cidade Destino</label>
-      <input type="text" id="destino" placeholder="Cidade destino" required>
-    </div>
-    <div class="form-field">
-      <label>Tipo de imóvel de destino:</label>
-      <div class="form-inline">
-        <label><input type="radio" name="tipoDestino" value="Casa" checked> Casa</label>
-        <label><input type="radio" name="tipoDestino" value="Apartamento"> Apartamento</label>
-      </div>
-      <div id="detalhesApartamentoDestino" style="display:none;">
-        <label for="elevadorDestino">Possui elevador:</label>
-        <div class="form-inline">
-          <label><input type="radio" name="elevadorDestino" value="Sim" checked> Sim</label>
-          <label><input type="radio" name="elevadorDestino" value="Não"> Não</label>
-        </div>
-        <input type="number" id="andarDestino" placeholder="Andar">
-      </div>
-    </div>
-    <div class="form-field">
-      <label>Data prevista da mudança:</label>
-      <input type="date" id="data" required>
-    </div>
-    <div class="form-field">
-      <label for="itens">Lista dos itens da mudança:</label>
-      <textarea id="itens" rows="4" placeholder="Ex: sofá, cama, geladeira, caixas..."></textarea>
-    </div>
-<label><input type="checkbox" id="servicoMontagem"> Serviço de desmontagem e montagem</label>
-    <!-- NOVO: Checkbox para serviço de desmontagem -->
-    <div class="form-field">
-      
-    </div>
-    <div class="form-field" id="campoObservacao" style="display: none;">
-      <label for="observacaoMontagem">Observações sobre o serviço:</label>
-      <textarea id="observacaoMontagem" rows="3" placeholder="Ex: desmontar guarda-roupa, montar estante..."></textarea>
-    </div>
-
-    <button onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
-  </section>
-
-  <footer>
-    Contato: (14) 99675-6241 | WhatsApp Disponível<br>
-    &copy; 2025 Anderson Mudanças e Transporte
-  </footer>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
-    function enviarWhatsApp() {
-      const nome = document.getElementById('nome').value;
-      const origem = document.getElementById('origem').value;
-      const destino = document.getElementById('destino').value;
-      const data = document.getElementById('data').value;
-      const itens = document.getElementById('itens').value;
+    let linhaEditando = null;
 
-      if (!nome || !origem || !destino || !data || !itens) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
+    function adicionarOuSalvarViagem() {
+      const cliente = document.getElementById("cliente").value;
+      const contato = document.getElementById("contato").value;
+      const data = document.getElementById("data").value;
+      const origem = document.getElementById("origem").value;
+      const destino = document.getElementById("destino").value;
+      const kmInicial = parseFloat(document.getElementById("kmInicial").value);
+      const kmFinal = parseFloat(document.getElementById("kmFinal").value);
+      const combustivel = parseFloat(document.getElementById("combustivel").value);
+      const pedagios = parseFloat(document.getElementById("pedagios").value);
+      const outros = parseFloat(document.getElementById("outros").value);
+      const ajudante = parseFloat(document.getElementById("ajudante").value);
+      const frete = parseFloat(document.getElementById("frete").value);
+
+      if ([kmInicial, kmFinal, combustivel, pedagios, outros, ajudante, frete].some(isNaN)) {
+        alert("Por favor, preencha todos os campos corretamente.");
+        return;
+      }
+      if (kmFinal < kmInicial) {
+        alert("KM Final não pode ser menor que o KM Inicial.");
         return;
       }
 
-      let dataFormatada = '';
-      if (data) {
-        const [year, month, day] = data.split("-");
-        dataFormatada = `${day}/${month}/${year}`;
+      const kmRodado = kmFinal - kmInicial;
+      const totalGastos = combustivel + pedagios + outros + ajudante;
+      const custoPorKm = kmRodado > 0 ? (totalGastos / kmRodado).toFixed(2) : "0.00";
+      const saldoFinal = (frete - totalGastos).toFixed(2);
+      const dataFormatada = new Date(data).toLocaleDateString("pt-BR");
+      const mes = data.slice(0, 7);
+
+      const html = `
+        <td>${cliente}</td><td>${contato}</td><td>${dataFormatada}</td><td>${origem} → ${destino}</td>
+        <td>${kmRodado} km</td><td>R$ ${combustivel.toFixed(2)}</td><td>R$ ${pedagios.toFixed(2)}</td>
+        <td>R$ ${outros.toFixed(2)}</td><td>R$ ${ajudante.toFixed(2)}</td><td>R$ ${totalGastos.toFixed(2)}</td>
+        <td>R$ ${custoPorKm}</td><td>R$ ${frete.toFixed(2)}</td><td>R$ ${saldoFinal}</td>
+        <td class="oculto">${kmInicial}</td><td class="oculto">${kmFinal}</td>
+        <td>
+          <button onclick="editarViagem(this)">Editar</button>
+          <button onclick="excluirViagem(this)">Excluir</button>
+        </td>`;
+
+      if (linhaEditando) {
+        linhaEditando.innerHTML = html;
+        linhaEditando.setAttribute("data-mes", mes);
+        linhaEditando = null;
+        document.getElementById("botao-adicionar").textContent = "Adicionar Viagem";
+      } else {
+        const row = document.createElement("tr");
+        row.setAttribute("data-mes", mes);
+        row.innerHTML = html;
+        document.querySelector("#tabela tbody").appendChild(row);
       }
 
-      const tipoOrigem = document.querySelector('input[name="tipoOrigem"]:checked').value;
-      const tipoDestino = document.querySelector('input[name="tipoDestino"]:checked').value;
-
-      let elevadorOrigem = '';
-      let andarOrigem = '';
-      if (tipoOrigem === 'Apartamento') {
-        elevadorOrigem = document.querySelector('input[name="elevadorOrigem"]:checked')?.value || '';
-        andarOrigem = document.getElementById('andarOrigem').value;
-      }
-
-      let elevadorDestino = '';
-      let andarDestino = '';
-      if (tipoDestino === 'Apartamento') {
-        elevadorDestino = document.querySelector('input[name="elevadorDestino"]:checked')?.value || '';
-        andarDestino = document.getElementById('andarDestino').value;
-      }
-
-      let detalhesOrigem = `Tipo de imóvel de retirada: ${tipoOrigem}`;
-      if (tipoOrigem === 'Apartamento') {
-        detalhesOrigem += ` | Elevador: ${elevadorOrigem} | Andar: ${andarOrigem}`;
-      }
-
-      let detalhesDestino = `Tipo de imóvel de destino: ${tipoDestino}`;
-      if (tipoDestino === 'Apartamento') {
-        detalhesDestino += ` | Elevador: ${elevadorDestino} | Andar: ${andarDestino}`;
-      }
-
-      const servicoMontagem = document.getElementById('servicoMontagem').checked;
-      const observacaoMontagem = document.getElementById('observacaoMontagem').value;
-
-      let detalhesMontagem = '';
-      if (servicoMontagem) {
-        detalhesMontagem = `\nServiço de desmontagem e montagem solicitado.`;
-        if (observacaoMontagem.trim()) {
-          detalhesMontagem += `\nObservações: ${observacaoMontagem.trim()}`;
-        }
-      }
-
-      const mensagem = `Olá, meu nome é ${nome}.
-Gostaria de solicitar um orçamento de mudança:
-De: ${origem} 
-Para: ${destino}
-Data: ${dataFormatada}
-
-${detalhesOrigem}
-${detalhesDestino}
-
-Itens da mudança:
-${itens}
-${detalhesMontagem}`;
-
-      const numero = '5514996756241';
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
+      document.querySelectorAll(".formulario input").forEach(input => input.value = "");
+      salvarDadosLocalmente();
+      atualizarResumo();
     }
 
-    // Mostrar/ocultar campos extras se for apartamento
-    const tipoOrigemRadios = document.getElementsByName('tipoOrigem');
-    tipoOrigemRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        document.getElementById('detalhesApartamentoOrigem').style.display =
-          document.querySelector('input[name="tipoOrigem"]:checked').value === 'Apartamento' ? 'block' : 'none';
+    function editarViagem(botao) {
+      const tr = botao.parentElement.parentElement;
+      const c = tr.querySelectorAll("td");
+      document.getElementById("cliente").value = c[0].textContent;
+      document.getElementById("contato").value = c[1].textContent;
+      const data = c[2].textContent.split("/");
+      document.getElementById("data").value = `${data[2]}-${data[1]}-${data[0]}`;
+      const origemDestino = c[3].textContent.split(" → ");
+      document.getElementById("origem").value = origemDestino[0];
+      document.getElementById("destino").value = origemDestino[1];
+      document.getElementById("kmInicial").value = parseFloat(c[13].textContent);
+      document.getElementById("kmFinal").value = parseFloat(c[14].textContent);
+      document.getElementById("combustivel").value = parseFloat(c[5].textContent.replace("R$ ", ""));
+      document.getElementById("pedagios").value = parseFloat(c[6].textContent.replace("R$ ", ""));
+      document.getElementById("outros").value = parseFloat(c[7].textContent.replace("R$ ", ""));
+      document.getElementById("ajudante").value = parseFloat(c[8].textContent.replace("R$ ", ""));
+      document.getElementById("frete").value = parseFloat(c[11].textContent.replace("R$ ", ""));
+
+      linhaEditando = tr;
+      document.getElementById("botao-adicionar").textContent = "Salvar Alterações";
+    }
+
+    function excluirViagem(botao) {
+      if (confirm("Deseja realmente excluir esta viagem?")) {
+        botao.parentElement.parentElement.remove();
+        salvarDadosLocalmente();
+        atualizarResumo();
+      }
+    }
+
+    function exportarParaExcel() {
+      const tabela = document.getElementById("tabela");
+      const workbook = XLSX.utils.table_to_book(tabela, { sheet: "Viagens" });
+      XLSX.writeFile(workbook, "controle_viagens.xlsx");
+    }
+
+    function salvarDadosLocalmente() {
+      const linhas = Array.from(document.querySelectorAll("#tabela tbody tr")).map(tr => ({
+        mes: tr.getAttribute("data-mes"),
+        celulas: Array.from(tr.querySelectorAll("td")).map(td => td.textContent)
+      }));
+      localStorage.setItem("viagens", JSON.stringify(linhas));
+    }
+
+    function carregarDadosSalvos() {
+      const dados = JSON.parse(localStorage.getItem("viagens"));
+      if (!dados) return;
+      dados.forEach(item => {
+        const row = document.createElement("tr");
+        row.setAttribute("data-mes", item.mes);
+        row.innerHTML = item.celulas.map((c, i) => `<td class="${i === 13 || i === 14 ? 'oculto' : ''}">${c}</td>`).join("") +
+          `<td><button onclick="editarViagem(this)">Editar</button> <button onclick="excluirViagem(this)">Excluir</button></td>`;
+        document.querySelector("#tabela tbody").appendChild(row);
       });
-    });
+      atualizarResumo();
+      preencherFiltroComMesAtual();
+    }
 
-    const tipoDestinoRadios = document.getElementsByName('tipoDestino');
-    tipoDestinoRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        document.getElementById('detalhesApartamentoDestino').style.display =
-          document.querySelector('input[name="tipoDestino"]:checked').value === 'Apartamento' ? 'block' : 'none';
+    function limparTabela() {
+      if (!confirm("Tem certeza que deseja apagar todos os dados?")) return;
+      document.querySelector("#tabela tbody").innerHTML = "";
+      localStorage.removeItem("viagens");
+      atualizarResumo();
+    }
+
+    function atualizarResumo() {
+      const linhas = document.querySelectorAll("#tabela tbody tr");
+      let totalViagens = 0, totalKm = 0, totalFrete = 0, totalGastos = 0, totalSaldo = 0;
+      linhas.forEach(linha => {
+        if (linha.style.display === "none") return;
+        const celulas = linha.querySelectorAll("td");
+        totalViagens++;
+        const km = parseFloat(celulas[4].textContent);
+        const gasto = parseFloat(celulas[9].textContent.replace("R$ ", ""));
+        const frete = parseFloat(celulas[11].textContent.replace("R$ ", ""));
+        const saldo = parseFloat(celulas[12].textContent.replace("R$ ", ""));
+        totalKm += km; totalGastos += gasto; totalFrete += frete; totalSaldo += saldo;
       });
-    });
+      document.getElementById("resumo-viagens").textContent = totalViagens;
+      document.getElementById("resumo-km").textContent = totalKm;
+      document.getElementById("resumo-media-km").textContent = (totalKm > 0 ? (totalGastos / totalKm).toFixed(2) : "0.00");
+      document.getElementById("resumo-frete").textContent = totalFrete.toFixed(2);
+      document.getElementById("resumo-gastos").textContent = totalGastos.toFixed(2);
+      document.getElementById("resumo-saldo").textContent = totalSaldo.toFixed(2);
+    }
 
-    // Mostrar/ocultar campo de observação da desmontagem
-    document.getElementById('servicoMontagem').addEventListener('change', function () {
-      document.getElementById('campoObservacao').style.display = this.checked ? 'block' : 'none';
-    });
+    function preencherFiltroComMesAtual() {
+      const hoje = new Date();
+      const anoMesAtual = hoje.toISOString().slice(0, 7);
+      document.getElementById("filtroMes").value = anoMesAtual;
+      filtrarPorMes();
+    }
 
-    // Exibir campos corretos ao carregar
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('input[name="tipoOrigem"]:checked').dispatchEvent(new Event('change'));
-      document.querySelector('input[name="tipoDestino"]:checked').dispatchEvent(new Event('change'));
-    });
+    function filtrarPorMes() {
+      const filtro = document.getElementById("filtroMes").value;
+      const linhas = document.querySelectorAll("#tabela tbody tr");
+      linhas.forEach(linha => {
+        linha.style.display = (filtro === "" || linha.getAttribute("data-mes") === filtro) ? "" : "none";
+      });
+      atualizarResumo();
+    }
+
+    carregarDadosSalvos();
   </script>
 </body>
 </html>
