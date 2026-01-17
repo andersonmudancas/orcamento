@@ -1,257 +1,274 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anderson Mudanças e Transporte</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: #BE1E21;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    header .logo {
-      font-size: 2em;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    header img {
-      max-width: 150px;
-      display: block;
-      margin: 0 auto 10px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    section {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .services, .about, .contact {
-      margin-top: 30px;
-    }
-    .form-field {
-      margin-bottom: 10px;
-    }
-    .form-field input, .form-field textarea, .form-field select {
-      width: 100%;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-    .form-field label {
-      display: block;
-      margin-top: 5px;
-    }
-    .form-inline {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    button {
-      background: #25D366;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-    footer {
-      background: #eee;
-      text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">Anderson Mudanças e Transporte</div>
-    <h1>Transporte com segurança e confiança</h1>
-  </header>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anderson Mudanças e Transporte</title>
 
-  <section class="contact">
-    <h2>Solicite um Orçamento</h2>
+<style>
+:root {
+  --vermelho: #BE1E21;
+  --verde: #25D366;
+  --cinza: #f4f4f4;
+  --texto: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--cinza);
+  color: var(--texto);
+}
+
+/* HEADER */
+header {
+  background: linear-gradient(135deg, #BE1E21, #9e181b);
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 1em;
+  opacity: 0.9;
+}
+
+/* CONTAINER */
+section {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* CARD */
+.form-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* CAMPOS */
+.form-field {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-inline {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* BOTÕES RADIO */
+.form-inline label {
+  font-weight: normal;
+}
+
+/* BOTÃO WHATSAPP */
+button {
+  width: 100%;
+  background: var(--verde);
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚚 Anderson Mudanças e Transporte</h1>
+  <p>Segurança, agilidade e confiança</p>
+</header>
+
+<section>
+  <div class="form-card">
+    <h2>📋 Solicitar Orçamento</h2>
+
     <div class="form-field">
-      <label>Seu nome</label>
-      <input type="text" id="nome" placeholder="Seu nome" required>
+      <label>👤 Seu nome</label>
+      <input type="text" id="nome" placeholder="Digite seu nome" required>
     </div>
+
     <div class="form-field">
-      <label>Cidade Origem</label>
-      <input type="text" id="origem" placeholder="Cidade origem" required>
+      <label>📍 Endereço ou Condomínio de Origem</label>
+      <input type="text" id="origem" placeholder="Rua, número, condomínio..." required>
     </div>
+
     <div class="form-field">
-      <label>Tipo de imóvel de retirada:</label>
+      <label>🏠 Tipo de imóvel (Origem)</label>
       <div class="form-inline">
         <label><input type="radio" name="tipoOrigem" value="Casa" checked> Casa</label>
         <label><input type="radio" name="tipoOrigem" value="Apartamento"> Apartamento</label>
       </div>
-      <div id="detalhesApartamentoOrigem" style="display:none;">
-        <label for="elevadorOrigem">Possui elevador:</label>
+
+      <div id="casaOrigem">
         <div class="form-inline">
-          <label><input type="radio" name="elevadorOrigem" value="Sim" checked> Sim</label>
-          <label><input type="radio" name="elevadorOrigem" value="Não"> Não</label>
+          <label><input type="radio" name="tipoCasaOrigem" value="Térrea" checked> Térrea</label>
+          <label><input type="radio" name="tipoCasaOrigem" value="Sobrado"> Sobrado</label>
         </div>
-        <input type="number" id="andarOrigem" placeholder="Andar" style="margin-top: 10px;">
+      </div>
+
+      <div id="apOrigem" style="display:none;">
+        <div class="form-inline">
+          <label><input type="radio" name="elevadorOrigem" value="Sim" checked> Elevador</label>
+          <label><input type="radio" name="elevadorOrigem" value="Não"> Sem elevador</label>
+        </div>
+        <input type="number" id="andarOrigem" placeholder="Andar">
       </div>
     </div>
+
     <div class="form-field">
-      <label>Cidade Destino</label>
-      <input type="text" id="destino" placeholder="Cidade destino" required>
+      <label>📍 Endereço ou Condomínio de Destino</label>
+      <input type="text" id="destino" placeholder="Rua, número, condomínio..." required>
     </div>
+
     <div class="form-field">
-      <label>Tipo de imóvel de destino:</label>
+      <label>🏠 Tipo de imóvel (Destino)</label>
       <div class="form-inline">
         <label><input type="radio" name="tipoDestino" value="Casa" checked> Casa</label>
         <label><input type="radio" name="tipoDestino" value="Apartamento"> Apartamento</label>
       </div>
-      <div id="detalhesApartamentoDestino" style="display:none;">
-        <label for="elevadorDestino">Possui elevador:</label>
+
+      <div id="casaDestino">
         <div class="form-inline">
-          <label><input type="radio" name="elevadorDestino" value="Sim" checked> Sim</label>
-          <label><input type="radio" name="elevadorDestino" value="Não"> Não</label>
+          <label><input type="radio" name="tipoCasaDestino" value="Térrea" checked> Térrea</label>
+          <label><input type="radio" name="tipoCasaDestino" value="Sobrado"> Sobrado</label>
+        </div>
+      </div>
+
+      <div id="apDestino" style="display:none;">
+        <div class="form-inline">
+          <label><input type="radio" name="elevadorDestino" value="Sim" checked> Elevador</label>
+          <label><input type="radio" name="elevadorDestino" value="Não"> Sem elevador</label>
         </div>
         <input type="number" id="andarDestino" placeholder="Andar">
       </div>
     </div>
+
     <div class="form-field">
-      <label>Data prevista da mudança:</label>
+      <label>📅 Data da mudança</label>
       <input type="date" id="data" required>
     </div>
+
     <div class="form-field">
-      <label for="itens">Lista dos itens da mudança:</label>
-      <textarea id="itens" rows="4" placeholder="Ex: sofá, cama, geladeira, caixas..."></textarea>
-    </div>
-<label><input type="checkbox" id="servicoMontagem"> Serviço de desmontagem e montagem</label>
-    <!-- NOVO: Checkbox para serviço de desmontagem -->
-    <div class="form-field">
-      
-    </div>
-    <div class="form-field" id="campoObservacao" style="display: none;">
-      <label for="observacaoMontagem">Observações sobre o serviço:</label>
-      <textarea id="observacaoMontagem" rows="3" placeholder="Ex: desmontar guarda-roupa, montar estante..."></textarea>
+      <label>📦 Itens da mudança</label>
+      <textarea id="itens" rows="4" placeholder="Ex: sofá, geladeira, cama, caixas..." required></textarea>
     </div>
 
-    <button onclick="enviarWhatsApp()">Enviar pelo WhatsApp</button>
-  </section>
+    <button onclick="enviarWhatsApp()">📲 Enviar pelo WhatsApp</button>
+  </div>
+</section>
 
-  <footer>
-    Contato: (14) 99675-6241 | WhatsApp Disponível<br>
-    &copy; 2025 Anderson Mudanças e Transporte
-  </footer>
+<footer>
+  📞 (14) 99675-6241 • WhatsApp disponível<br>
+  © 2025 Anderson Mudanças e Transporte
+</footer>
 
-  <script>
-    function enviarWhatsApp() {
-      const nome = document.getElementById('nome').value;
-      const origem = document.getElementById('origem').value;
-      const destino = document.getElementById('destino').value;
-      const data = document.getElementById('data').value;
-      const itens = document.getElementById('itens').value;
+<script>
+function toggle(tipo, casa, ap) {
+  casa.style.display = tipo === 'Casa' ? 'block' : 'none';
+  ap.style.display = tipo === 'Apartamento' ? 'block' : 'none';
+}
 
-      if (!nome || !origem || !destino || !data || !itens) {
-        alert("Por favor, preencha todos os campos obrigatórios.");
-        return;
-      }
+document.querySelectorAll('input[name="tipoOrigem"]').forEach(r =>
+  r.addEventListener('change', () => toggle(r.value, casaOrigem, apOrigem))
+);
 
-      let dataFormatada = '';
-      if (data) {
-        const [year, month, day] = data.split("-");
-        dataFormatada = `${day}/${month}/${year}`;
-      }
+document.querySelectorAll('input[name="tipoDestino"]').forEach(r =>
+  r.addEventListener('change', () => toggle(r.value, casaDestino, apDestino))
+);
 
-      const tipoOrigem = document.querySelector('input[name="tipoOrigem"]:checked').value;
-      const tipoDestino = document.querySelector('input[name="tipoDestino"]:checked').value;
+function enviarWhatsApp() {
+  const nome = nome.value;
+  const origem = origem.value;
+  const destino = destino.value;
+  const data = data.value;
+  const itens = itens.value;
 
-      let elevadorOrigem = '';
-      let andarOrigem = '';
-      if (tipoOrigem === 'Apartamento') {
-        elevadorOrigem = document.querySelector('input[name="elevadorOrigem"]:checked')?.value || '';
-        andarOrigem = document.getElementById('andarOrigem').value;
-      }
+  const tipoOrigem = document.querySelector('input[name="tipoOrigem"]:checked').value;
+  const tipoDestino = document.querySelector('input[name="tipoDestino"]:checked').value;
 
-      let elevadorDestino = '';
-      let andarDestino = '';
-      if (tipoDestino === 'Apartamento') {
-        elevadorDestino = document.querySelector('input[name="elevadorDestino"]:checked')?.value || '';
-        andarDestino = document.getElementById('andarDestino').value;
-      }
+  let origemInfo = tipoOrigem === 'Casa'
+    ? `Casa (${document.querySelector('input[name="tipoCasaOrigem"]:checked').value})`
+    : `Apartamento | Elevador: ${document.querySelector('input[name="elevadorOrigem"]:checked').value} | Andar: ${andarOrigem.value}`;
 
-      let detalhesOrigem = `Tipo de imóvel de retirada: ${tipoOrigem}`;
-      if (tipoOrigem === 'Apartamento') {
-        detalhesOrigem += ` | Elevador: ${elevadorOrigem} | Andar: ${andarOrigem}`;
-      }
+  let destinoInfo = tipoDestino === 'Casa'
+    ? `Casa (${document.querySelector('input[name="tipoCasaDestino"]:checked').value})`
+    : `Apartamento | Elevador: ${document.querySelector('input[name="elevadorDestino"]:checked').value} | Andar: ${andarDestino.value}`;
 
-      let detalhesDestino = `Tipo de imóvel de destino: ${tipoDestino}`;
-      if (tipoDestino === 'Apartamento') {
-        detalhesDestino += ` | Elevador: ${elevadorDestino} | Andar: ${andarDestino}`;
-      }
+  const [y,m,d] = data.split("-");
+  const msg = `Olá, meu nome é ${nome}.
+Gostaria de um orçamento de mudança:
 
-      const servicoMontagem = document.getElementById('servicoMontagem').checked;
-      const observacaoMontagem = document.getElementById('observacaoMontagem').value;
+📍 Origem:
+${origem}
+${origemInfo}
 
-      let detalhesMontagem = '';
-      if (servicoMontagem) {
-        detalhesMontagem = `\nServiço de desmontagem e montagem solicitado.`;
-        if (observacaoMontagem.trim()) {
-          detalhesMontagem += `\nObservações: ${observacaoMontagem.trim()}`;
-        }
-      }
+📍 Destino:
+${destino}
+${destinoInfo}
 
-      const mensagem = `Olá, meu nome é ${nome}.
-Gostaria de solicitar um orçamento de mudança:
-De: ${origem} 
-Para: ${destino}
-Data: ${dataFormatada}
+📅 Data: ${d}/${m}/${y}
 
-${detalhesOrigem}
-${detalhesDestino}
+📦 Itens:
+${itens}`;
 
-Itens da mudança:
-${itens}
-${detalhesMontagem}`;
+  window.open(`https://wa.me/5514996756241?text=${encodeURIComponent(msg)}`, '_blank');
+}
+</script>
 
-      const numero = '5514996756241';
-      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-    }
-
-    // Mostrar/ocultar campos extras se for apartamento
-    const tipoOrigemRadios = document.getElementsByName('tipoOrigem');
-    tipoOrigemRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        document.getElementById('detalhesApartamentoOrigem').style.display =
-          document.querySelector('input[name="tipoOrigem"]:checked').value === 'Apartamento' ? 'block' : 'none';
-      });
-    });
-
-    const tipoDestinoRadios = document.getElementsByName('tipoDestino');
-    tipoDestinoRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        document.getElementById('detalhesApartamentoDestino').style.display =
-          document.querySelector('input[name="tipoDestino"]:checked').value === 'Apartamento' ? 'block' : 'none';
-      });
-    });
-
-    // Mostrar/ocultar campo de observação da desmontagem
-    document.getElementById('servicoMontagem').addEventListener('change', function () {
-      document.getElementById('campoObservacao').style.display = this.checked ? 'block' : 'none';
-    });
-
-    // Exibir campos corretos ao carregar
-    window.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('input[name="tipoOrigem"]:checked').dispatchEvent(new Event('change'));
-      document.querySelector('input[name="tipoDestino"]:checked').dispatchEvent(new Event('change'));
-    });
-  </script>
 </body>
 </html>
