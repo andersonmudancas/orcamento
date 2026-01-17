@@ -13,9 +13,7 @@
   --texto: #333;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -24,7 +22,6 @@ body {
   color: var(--texto);
 }
 
-/* HEADER */
 header {
   background: linear-gradient(135deg, #BE1E21, #9e181b);
   color: white;
@@ -32,25 +29,12 @@ header {
   text-align: center;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 1.8em;
-}
-
-header p {
-  margin-top: 8px;
-  font-size: 1em;
-  opacity: 0.9;
-}
-
-/* CONTAINER */
 section {
   max-width: 700px;
   margin: auto;
   padding: 20px;
 }
 
-/* CARD */
 .form-card {
   background: white;
   border-radius: 10px;
@@ -58,10 +42,7 @@ section {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* CAMPOS */
-.form-field {
-  margin-bottom: 15px;
-}
+.form-field { margin-bottom: 15px; }
 
 label {
   font-weight: bold;
@@ -74,11 +55,6 @@ input, textarea {
   padding: 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 1em;
-}
-
-textarea {
-  resize: vertical;
 }
 
 .form-inline {
@@ -87,12 +63,6 @@ textarea {
   flex-wrap: wrap;
 }
 
-/* BOTÕES RADIO */
-.form-inline label {
-  font-weight: normal;
-}
-
-/* BOTÃO WHATSAPP */
 button {
   width: 100%;
   background: var(--verde);
@@ -102,26 +72,15 @@ button {
   font-size: 1.1em;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-button:hover {
-  opacity: 0.9;
-}
+button:hover { opacity: 0.9; }
 
-/* FOOTER */
 footer {
   text-align: center;
   padding: 15px;
   font-size: 0.9em;
   color: #555;
-}
-
-/* MOBILE */
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.5em;
-  }
 }
 </style>
 </head>
@@ -134,141 +93,169 @@ footer {
 </header>
 
 <section>
-  <div class="form-card">
-    <h2>📋 Solicitar Orçamento</h2>
+<div class="form-card">
+<h2>📋 Solicitar Orçamento</h2>
 
-    <div class="form-field">
-      <label>👤 Seu nome</label>
-      <input type="text" id="nome" placeholder="Digite seu nome" required>
-    </div>
+<div class="form-field">
+<label>👤 Seu nome</label>
+<input type="text" id="nome" required>
+</div>
 
-    <div class="form-field">
-      <label>📍 Endereço ou Condomínio de Origem</label>
-      <input type="text" id="origem" placeholder="Rua, número, condomínio..." required>
-    </div>
+<div class="form-field">
+<label>📍 Endereço de Origem</label>
+<input type="text" id="origem" required>
+</div>
 
-    <div class="form-field">
-      <label>🏠 Tipo de imóvel (Origem)</label>
-      <div class="form-inline">
-        <label><input type="radio" name="tipoOrigem" value="Casa" checked> Casa</label>
-        <label><input type="radio" name="tipoOrigem" value="Apartamento"> Apartamento</label>
-      </div>
+<div class="form-field">
+<label>🏠 Tipo de imóvel (Origem)</label>
+<div class="form-inline">
+<label><input type="radio" name="tipoOrigem" value="Casa" checked> Casa</label>
+<label><input type="radio" name="tipoOrigem" value="Apartamento"> Apartamento</label>
+</div>
 
-      <div id="casaOrigem">
-        <div class="form-inline">
-          <label><input type="radio" name="tipoCasaOrigem" value="Térrea" checked> Térrea</label>
-          <label><input type="radio" name="tipoCasaOrigem" value="Sobrado"> Sobrado</label>
-        </div>
-      </div>
+<div id="casaOrigem">
+<label><input type="radio" name="tipoCasaOrigem" value="Térrea" checked> Térrea</label>
+<label><input type="radio" name="tipoCasaOrigem" value="Sobrado"> Sobrado</label>
+</div>
 
-      <div id="apOrigem" style="display:none;">
-        <div class="form-inline">
-          <label><input type="radio" name="elevadorOrigem" value="Sim" checked> Elevador</label>
-          <label><input type="radio" name="elevadorOrigem" value="Não"> Sem elevador</label>
-        </div>
-        <input type="number" id="andarOrigem" placeholder="Andar">
-      </div>
-    </div>
+<div id="apOrigem" style="display:none;">
+<label><input type="radio" name="elevadorOrigem" value="Sim" checked> Elevador</label>
+<label><input type="radio" name="elevadorOrigem" value="Não"> Sem elevador</label>
+<input type="number" id="andarOrigem" placeholder="Andar">
+</div>
+</div>
 
-    <div class="form-field">
-      <label>📍 Endereço ou Condomínio de Destino</label>
-      <input type="text" id="destino" placeholder="Rua, número, condomínio..." required>
-    </div>
+<div class="form-field">
+<label>📍 Endereço de Destino</label>
+<input type="text" id="destino" required>
+</div>
 
-    <div class="form-field">
-      <label>🏠 Tipo de imóvel (Destino)</label>
-      <div class="form-inline">
-        <label><input type="radio" name="tipoDestino" value="Casa" checked> Casa</label>
-        <label><input type="radio" name="tipoDestino" value="Apartamento"> Apartamento</label>
-      </div>
+<div class="form-field">
+<label>🏠 Tipo de imóvel (Destino)</label>
+<div class="form-inline">
+<label><input type="radio" name="tipoDestino" value="Casa" checked> Casa</label>
+<label><input type="radio" name="tipoDestino" value="Apartamento"> Apartamento</label>
+</div>
 
-      <div id="casaDestino">
-        <div class="form-inline">
-          <label><input type="radio" name="tipoCasaDestino" value="Térrea" checked> Térrea</label>
-          <label><input type="radio" name="tipoCasaDestino" value="Sobrado"> Sobrado</label>
-        </div>
-      </div>
+<div id="casaDestino">
+<label><input type="radio" name="tipoCasaDestino" value="Térrea" checked> Térrea</label>
+<label><input type="radio" name="tipoCasaDestino" value="Sobrado"> Sobrado</label>
+</div>
 
-      <div id="apDestino" style="display:none;">
-        <div class="form-inline">
-          <label><input type="radio" name="elevadorDestino" value="Sim" checked> Elevador</label>
-          <label><input type="radio" name="elevadorDestino" value="Não"> Sem elevador</label>
-        </div>
-        <input type="number" id="andarDestino" placeholder="Andar">
-      </div>
-    </div>
+<div id="apDestino" style="display:none;">
+<label><input type="radio" name="elevadorDestino" value="Sim" checked> Elevador</label>
+<label><input type="radio" name="elevadorDestino" value="Não"> Sem elevador</label>
+<input type="number" id="andarDestino" placeholder="Andar">
+</div>
+</div>
 
-    <div class="form-field">
-      <label>📅 Data da mudança</label>
-      <input type="date" id="data" required>
-    </div>
+<div class="form-field">
+<label>📅 Data da mudança</label>
+<input type="date" id="data" required>
+</div>
 
-    <div class="form-field">
-      <label>📦 Itens da mudança</label>
-      <textarea id="itens" rows="4" placeholder="Ex: sofá, geladeira, cama, caixas..." required></textarea>
-    </div>
+<div class="form-field">
+<label>📦 Itens da mudança</label>
+<textarea id="itens" rows="4" required></textarea>
+</div>
 
-    <button onclick="enviarWhatsApp()">📲 Enviar pelo WhatsApp</button>
-  </div>
+<button type="button" onclick="enviarWhatsApp()">📲 Enviar pelo WhatsApp</button>
+</div>
 </section>
 
 <footer>
-  📞 (14) 99675-6241 • WhatsApp disponível<br>
-  © 2025 Anderson Mudanças e Transporte
+📞 (14) 99675-6241 • WhatsApp<br>
+© 2025 Anderson Mudanças e Transporte
 </footer>
 
 <script>
+const casaOrigem = document.getElementById('casaOrigem');
+const apOrigem = document.getElementById('apOrigem');
+const casaDestino = document.getElementById('casaDestino');
+const apDestino = document.getElementById('apDestino');
+
 function toggle(tipo, casa, ap) {
   casa.style.display = tipo === 'Casa' ? 'block' : 'none';
   ap.style.display = tipo === 'Apartamento' ? 'block' : 'none';
 }
 
 document.querySelectorAll('input[name="tipoOrigem"]').forEach(r =>
-  r.addEventListener('change', () => toggle(r.value, casaOrigem, apOrigem))
+  r.addEventListener('change', () =>
+    toggle(
+      document.querySelector('input[name="tipoOrigem"]:checked').value,
+      casaOrigem,
+      apOrigem
+    )
+  )
 );
 
 document.querySelectorAll('input[name="tipoDestino"]').forEach(r =>
-  r.addEventListener('change', () => toggle(r.value, casaDestino, apDestino))
+  r.addEventListener('change', () =>
+    toggle(
+      document.querySelector('input[name="tipoDestino"]:checked').value,
+      casaDestino,
+      apDestino
+    )
+  )
 );
 
 function enviarWhatsApp() {
-  const nome = nome.value;
-  const origem = origem.value;
-  const destino = destino.value;
-  const data = data.value;
-  const itens = itens.value;
+  const nome = document.getElementById('nome').value.trim();
+  const origem = document.getElementById('origem').value.trim();
+  const destino = document.getElementById('destino').value.trim();
+  const data = document.getElementById('data').value;
+  const itens = document.getElementById('itens').value.trim();
+
+  if (!nome || !origem || !destino || !data || !itens) {
+    alert("Preencha todos os campos.");
+    return;
+  }
 
   const tipoOrigem = document.querySelector('input[name="tipoOrigem"]:checked').value;
   const tipoDestino = document.querySelector('input[name="tipoDestino"]:checked').value;
 
-  let origemInfo = tipoOrigem === 'Casa'
-    ? `Casa (${document.querySelector('input[name="tipoCasaOrigem"]:checked').value})`
-    : `Apartamento | Elevador: ${document.querySelector('input[name="elevadorOrigem"]:checked').value} | Andar: ${andarOrigem.value}`;
+  const origemInfo =
+    tipoOrigem === 'Casa'
+      ? `Casa (${document.querySelector('input[name="tipoCasaOrigem"]:checked').value})`
+      : `Apartamento | Elevador: ${document.querySelector('input[name="elevadorOrigem"]:checked').value} | Andar: ${document.getElementById('andarOrigem').value || 'não informado'}`;
 
-  let destinoInfo = tipoDestino === 'Casa'
-    ? `Casa (${document.querySelector('input[name="tipoCasaDestino"]:checked').value})`
-    : `Apartamento | Elevador: ${document.querySelector('input[name="elevadorDestino"]:checked').value} | Andar: ${andarDestino.value}`;
+  const destinoInfo =
+    tipoDestino === 'Casa'
+      ? `Casa (${document.querySelector('input[name="tipoCasaDestino"]:checked').value})`
+      : `Apartamento | Elevador: ${document.querySelector('input[name="elevadorDestino"]:checked').value} | Andar: ${document.getElementById('andarDestino').value || 'não informado'}`;
 
-  const [y,m,d] = data.split("-");
-  const msg = `Olá, meu nome é ${nome}.
-Gostaria de um orçamento de mudança:
+  const [ano, mes, dia] = data.split('-');
 
-📍 Origem:
+  const mensagem = `Olá, meu nome é ${nome}.
+Gostaria de um orçamento de mudança.
+
+📍 ORIGEM:
 ${origem}
 ${origemInfo}
 
-📍 Destino:
+📍 DESTINO:
 ${destino}
 ${destinoInfo}
 
-📅 Data: ${d}/${m}/${y}
+📅 Data: ${dia}/${mes}/${ano}
 
 📦 Itens:
 ${itens}`;
 
-  window.open(`https://wa.me/5514996756241?text=${encodeURIComponent(msg)}`, '_blank');
+  window.open(
+    `https://wa.me/5514996756241?text=${encodeURIComponent(mensagem)}`,
+    '_blank'
+  );
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('input[name="tipoOrigem"]:checked').dispatchEvent(new Event('change'));
+  document.querySelector('input[name="tipoDestino"]:checked').dispatchEvent(new Event('change'));
+});
 </script>
 
 </body>
 </html>
+
+</html>
+
