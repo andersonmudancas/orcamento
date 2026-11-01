@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,16 +7,13 @@
 
 <style>
 :root {
-  --preto: #111111;
-  --azul: #0878D1;
-  --azul-hover: #0562AD;
+  --vermelho: #BE1E21;
+  --verde: #25D366;
   --cinza: #f4f4f4;
   --texto: #333;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -26,31 +22,15 @@ body {
   color: var(--texto);
 }
 
-/* BANNER */
-
 header {
-  background: linear-gradient(135deg, #000000, #202020);
+  background: linear-gradient(135deg, #BE1E21, #9e181b);
   color: white;
-  padding: 35px 20px;
+  padding: 30px 20px;
   text-align: center;
-  border-bottom: 4px solid var(--azul);
 }
 
-header h1 {
-  margin: 0;
-  font-size: 2em;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-header p {
-  margin-top: 10px;
-  color: #ccc;
-  font-size: 1em;
-  letter-spacing: 1px;
-}
-
-/* FORMULÁRIO */
+header h1 { margin: 0; font-size: 1.8em; }
+header p { margin-top: 8px; opacity: 0.9; }
 
 section {
   max-width: 700px;
@@ -65,9 +45,7 @@ section {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.form-field {
-  margin-bottom: 15px;
-}
+.form-field { margin-bottom: 15px; }
 
 label {
   font-weight: bold;
@@ -75,8 +53,7 @@ label {
   margin-bottom: 6px;
 }
 
-input:not([type="radio"]):not([type="checkbox"]),
-textarea {
+input, textarea {
   width: 100%;
   padding: 12px;
   border-radius: 6px;
@@ -84,16 +61,7 @@ textarea {
   font-size: 1em;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-  width: auto;
-  margin-right: 5px;
-  accent-color: var(--azul);
-}
-
-textarea {
-  resize: vertical;
-}
+textarea { resize: vertical; }
 
 .form-inline {
   display: flex;
@@ -101,147 +69,20 @@ textarea {
   flex-wrap: wrap;
 }
 
-.form-inline label {
-  font-weight: normal;
-}
-
-/* BOTÕES */
+.form-inline label { font-weight: normal; }
 
 button {
   width: 100%;
-  background: var(--azul);
+  background: var(--verde);
   color: white;
   border: none;
   padding: 15px;
   font-size: 1.1em;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-button:hover {
-  background: var(--azul-hover);
-}
-.btn-whatsapp {
-  background: #25D366;
-  color: white;
-}
-
-.btn-whatsapp:hover {
-  background: #1DA851;
-}
-/* SERVIÇOS ADICIONAIS */
-
-.opcao-servico {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 12px;
-  background: #fafafa;
-}
-
-.opcao-servico label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  cursor: pointer;
-}
-
-.info-servico {
-  margin-top: 12px;
-  padding: 12px;
-  background: #fff;
-  border-radius: 7px;
-  border: 1px solid #ddd;
-}
-
-.valor-caixa {
-  color: var(--azul);
-  font-size: 1.15em;
-  font-weight: bold;
-}
-
-.total-caixas {
-  margin-top: 10px;
-  font-weight: bold;
-  font-size: 1.1em;
-  color: var(--azul);
-}
-
-/* LISTA DE MÓVEIS */
-
-.lista-itens {
-  margin-top: 12px;
-}
-
-.item-cadastrado {
-  background: #f4f4f4;
-  border: 1px solid #ddd;
-  padding: 12px;
-  border-radius: 7px;
-  margin-bottom: 8px;
-  overflow-wrap: anywhere;
-}
-
-.item-cadastrado button {
-  width: auto;
-  padding: 7px 12px;
-  font-size: 0.85em;
-  background: var(--azul);
-  margin-top: 8px;
-}
-
-/* JANELA DE DIÁLOGO */
-
-.modal {
-  border: none;
-  border-radius: 12px;
-  padding: 0;
-  width: calc(100% - 30px);
-  max-width: 500px;
-  box-shadow: 0 8px 30px rgba(0,0,0,.3);
-}
-
-.modal::backdrop {
-  background: rgba(0,0,0,.65);
-}
-
-.modal-conteudo {
-  padding: 22px;
-}
-
-.modal-conteudo h2 {
-  margin-top: 0;
-  color: var(--azul);
-}
-
-.modal-acoes {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.modal-acoes button {
-  font-size: .95em;
-  padding: 12px;
-}
-
-.btn-cancelar {
-  background: var(--azul);
-}
-
-.aviso-fotos {
-  background: #f0f6fc;
-  border: 1px solid #cce0f5;
-  border-radius: 7px;
-  padding: 12px;
-  color: #245477;
-  line-height: 1.5;
-  font-size: .95em;
-}
-
-/* RODAPÉ */
+button:hover { opacity: 0.9; }
 
 footer {
   text-align: center;
@@ -250,51 +91,27 @@ footer {
   color: #555;
 }
 
-/* CELULAR */
-
 @media (max-width: 480px) {
-  header h1 {
-    font-size: 1.5em;
-  }
-
-  header p {
-    font-size: .85em;
-  }
-
-  .form-card {
-    padding: 15px;
-  }
-
-  .modal-acoes {
-    flex-direction: column;
-  }
+  header h1 { font-size: 1.5em; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- BANNER -->
-
 <header>
-  <h1>🚚 ANDERSON MUDANÇAS</h1>
-  <p>MUDANÇAS E TRANSPORTE</p>
-  <p>SEGURANÇA • AGILIDADE • CONFIANÇA</p>
+  <h1>🚚 Anderson Mudanças e Transporte</h1>
+  <p>Segurança, agilidade e confiança</p>
 </header>
 
 <section>
 <div class="form-card">
-
 <h2>📋 Solicitar Orçamento</h2>
-
-<!-- NOME -->
 
 <div class="form-field">
 <label>👤 Seu nome</label>
 <input type="text" id="nome" placeholder="Digite seu nome">
 </div>
-
-<!-- ORIGEM -->
 
 <div class="form-field">
 <label>📍 Endereço ou Condomínio de Origem</label>
@@ -303,7 +120,6 @@ footer {
 
 <div class="form-field">
 <label>🏠 Tipo de imóvel (Origem)</label>
-
 <div class="form-inline">
 <label><input type="radio" name="tipoOrigem" value="Casa" checked> Casa</label>
 <label><input type="radio" name="tipoOrigem" value="Apartamento"> Apartamento</label>
@@ -325,8 +141,6 @@ footer {
 </div>
 </div>
 
-<!-- DESTINO -->
-
 <div class="form-field">
 <label>📍 Endereço ou Condomínio de Destino</label>
 <input type="text" id="destino" placeholder="Rua, número, condomínio...">
@@ -334,7 +148,6 @@ footer {
 
 <div class="form-field">
 <label>🏠 Tipo de imóvel (Destino)</label>
-
 <div class="form-inline">
 <label><input type="radio" name="tipoDestino" value="Casa" checked> Casa</label>
 <label><input type="radio" name="tipoDestino" value="Apartamento"> Apartamento</label>
@@ -356,143 +169,26 @@ footer {
 </div>
 </div>
 
-<!-- DATA -->
-
 <div class="form-field">
 <label>📅 Data da mudança</label>
 <input type="date" id="data">
 </div>
-
-<!-- ITENS -->
 
 <div class="form-field">
 <label>📦 Itens da mudança</label>
 <textarea id="itens" rows="4" placeholder="Ex: sofá, geladeira, cama, caixas..."></textarea>
 </div>
 
-<hr>
-
-<h3>🛠️ Serviços adicionais</h3>
-
-<!-- DESMONTAGEM E MONTAGEM -->
-
-<div class="opcao-servico">
-
-<label>
-<input type="checkbox" id="servicoDesmontagem"
-onchange="toggleDesmontagem()">
-Desmontagem e montagem de móveis
-</label>
-
-<div id="areaDesmontagem" style="display:none;" class="info-servico">
-
-<p><strong>Informe os móveis que precisam de desmontagem e montagem.</strong></p>
-
-<button type="button" onclick="abrirModal()">
-➕ Adicionar móvel ou item
-</button>
-
-<div id="listaItens" class="lista-itens"></div>
-
-<div class="aviso-fotos">
-📸 <strong>Envie fotos dos móveis a serem desmontados pelo WhatsApp.</strong>
-<br><br>
-Para facilitar o orçamento, envie fotos de todos os móveis que precisam de desmontagem e montagem após abrir a conversa.
-</div>
-
-</div>
-</div>
-
-<!-- CAIXAS DE PAPELÃO -->
-
-<div class="opcao-servico">
-
-<label>
-<input type="checkbox" id="precisaCaixas"
-onchange="toggleCaixas()">
-Preciso de caixas de papelão para embalar
-</label>
-
-<div id="areaCaixas" style="display:none;" class="info-servico">
-
-<p>📦 Valor de cada caixa:</p>
-
-<div class="valor-caixa">R$ 3,00 por unidade</div>
-
-<div class="form-field" style="margin-top:15px;">
-<label>Quantidade de caixas</label>
-<input type="number" id="quantidadeCaixas"
-min="1" step="1" value="1"
-oninput="calcularCaixas()">
-</div>
-
-<div class="total-caixas" id="totalCaixas">
-Total: R$ 3,00
-</div>
-
-</div>
-</div>
-
-<hr>
-
-<!-- ENVIAR -->
-
-<button type="button" class="btn-whatsapp" onclick="enviarWhatsApp()">
-  📲 Enviar pelo WhatsApp
-</button>
-
+<button onclick="enviarWhatsApp()">📲 Enviar pelo WhatsApp</button>
 </div>
 </section>
 
-<!-- RODAPÉ -->
-
 <footer>
 📞 (14) 99675-6241 • WhatsApp disponível<br>
-© 2026 Anderson Mudanças e Transporte
+© 2025 Anderson Mudanças e Transporte
 </footer>
 
-<!-- MODAL DE DESMONTAGEM -->
-
-<dialog id="modalDesmontagem" class="modal">
-
-<div class="modal-conteudo">
-
-<h2>🛠️ Desmontagem e Montagem</h2>
-
-<div class="form-field">
-<label>Nome do móvel ou item</label>
-<input type="text" id="nomeItem"
-placeholder="Ex: Guarda-roupa, cama, painel...">
-</div>
-
-<div class="aviso-fotos">
-📸 <strong>Envie fotos dos móveis a serem desmontados pelo WhatsApp.</strong>
-
-<p>
-Após preencher os móveis, você poderá enviar as fotos diretamente na conversa do WhatsApp.
-</p>
-</div>
-
-<div class="modal-acoes">
-
-<button type="button" onclick="adicionarItem()">
-Salvar item
-</button>
-
-<button type="button" class="btn-cancelar"
-onclick="fecharModal()">
-Cancelar
-</button>
-
-</div>
-
-</div>
-</dialog>
-
 <script>
-
-// CONTROLE DOS TIPOS DE IMÓVEL
-
 const casaOrigem = document.getElementById("casaOrigem");
 const apOrigem = document.getElementById("apOrigem");
 const casaDestino = document.getElementById("casaDestino");
@@ -504,131 +200,14 @@ function toggle(tipo, casa, ap) {
 }
 
 document.querySelectorAll('input[name="tipoOrigem"]').forEach(r =>
-  r.addEventListener("change", () =>
-    toggle(r.value, casaOrigem, apOrigem))
+  r.addEventListener("change", () => toggle(r.value, casaOrigem, apOrigem))
 );
 
 document.querySelectorAll('input[name="tipoDestino"]').forEach(r =>
-  r.addEventListener("change", () =>
-    toggle(r.value, casaDestino, apDestino))
+  r.addEventListener("change", () => toggle(r.value, casaDestino, apDestino))
 );
 
-// DESMONTAGEM E MONTAGEM
-
-const modal = document.getElementById("modalDesmontagem");
-
-let itensDesmontagem = [];
-
-function toggleDesmontagem() {
-
-  const marcado = document.getElementById("servicoDesmontagem").checked;
-
-  document.getElementById("areaDesmontagem").style.display =
-    marcado ? "block" : "none";
-
-  if (marcado && itensDesmontagem.length === 0) {
-    abrirModal();
-  }
-}
-
-function abrirModal() {
-  document.getElementById("nomeItem").value = "";
-  modal.showModal();
-}
-
-function fecharModal() {
-  modal.close();
-}
-
-// ADICIONAR ITEM
-
-function adicionarItem() {
-
-  const nome = document.getElementById("nomeItem").value.trim();
-
-  if (!nome) {
-    alert("Informe o nome do móvel ou item.");
-    return;
-  }
-
-  itensDesmontagem.push({
-    nome: nome
-  });
-
-  atualizarListaItens();
-  modal.close();
-}
-
-// ATUALIZAR LISTA
-
-function atualizarListaItens() {
-
-  const lista = document.getElementById("listaItens");
-  lista.innerHTML = "";
-
-  itensDesmontagem.forEach((item, index) => {
-
-    const div = document.createElement("div");
-    div.className = "item-cadastrado";
-
-    const titulo = document.createElement("strong");
-    titulo.textContent = "🪑 " + item.nome;
-
-    const excluir = document.createElement("button");
-    excluir.type = "button";
-    excluir.textContent = "Excluir item";
-
-    excluir.onclick = function() {
-      removerItem(index);
-    };
-
-    div.appendChild(titulo);
-    div.appendChild(document.createElement("br"));
-    div.appendChild(excluir);
-
-    lista.appendChild(div);
-  });
-
-}
-
-function removerItem(index) {
-  itensDesmontagem.splice(index, 1);
-  atualizarListaItens();
-}
-
-// CAIXAS DE PAPELÃO
-
-function toggleCaixas() {
-
-  const marcado = document.getElementById("precisaCaixas").checked;
-
-  document.getElementById("areaCaixas").style.display =
-    marcado ? "block" : "none";
-
-  calcularCaixas();
-}
-
-function calcularCaixas() {
-
-  const quantidade = Math.max(
-    0,
-    parseInt(document.getElementById("quantidadeCaixas").value) || 0
-  );
-
-  const total = quantidade * 3;
-
-  document.getElementById("totalCaixas").textContent =
-    "Total: " + total.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    });
-
-}
-
-// ENVIO PELO WHATSAPP
-
 function enviarWhatsApp() {
-
   const nome = document.getElementById("nome").value.trim();
   const origem = document.getElementById("origem").value.trim();
   const destino = document.getElementById("destino").value.trim();
@@ -640,21 +219,8 @@ function enviarWhatsApp() {
     return;
   }
 
-  if (
-    document.getElementById("servicoDesmontagem").checked &&
-    itensDesmontagem.length === 0
-  ) {
-    alert("Adicione pelo menos um móvel para desmontagem e montagem.");
-    return;
-  }
-
-  const tipoOrigem = document.querySelector(
-    'input[name="tipoOrigem"]:checked'
-  ).value;
-
-  const tipoDestino = document.querySelector(
-    'input[name="tipoDestino"]:checked'
-  ).value;
+  const tipoOrigem = document.querySelector('input[name="tipoOrigem"]:checked').value;
+  const tipoDestino = document.querySelector('input[name="tipoDestino"]:checked').value;
 
   const origemInfo = tipoOrigem === "Casa"
     ? `Casa (${document.querySelector('input[name="tipoCasaOrigem"]:checked').value})`
@@ -664,103 +230,25 @@ function enviarWhatsApp() {
     ? `Casa (${document.querySelector('input[name="tipoCasaDestino"]:checked').value})`
     : `Apartamento | Elevador: ${document.querySelector('input[name="elevadorDestino"]:checked').value} | Andar: ${document.getElementById("andarDestino").value || "não informado"}`;
 
-  const [y, m, d] = data.split("-");
+  const [y,m,d] = data.split("-");
 
-  let mensagem = `Olá! Gostaria de solicitar um orçamento de mudança.
+  const msg = `Olá, meu nome é ${nome}.
 
-👤 Nome: ${nome}
-
-📍 ORIGEM:
+📍 Origem:
 ${origem}
 ${origemInfo}
 
-📍 DESTINO:
+📍 Destino:
 ${destino}
 ${destinoInfo}
 
-📅 Data da mudança: ${d}/${m}/${y}
+📅 Data: ${d}/${m}/${y}
 
-📦 ITENS DA MUDANÇA:
-${itens}
-`;
+📦 Itens:
+${itens}`;
 
-  // DESMONTAGEM E MONTAGEM
-
-  const desmontagem = document.getElementById(
-    "servicoDesmontagem"
-  ).checked;
-
-  if (desmontagem) {
-
-    mensagem += `
-
-🛠️ DESMONTAGEM E MONTAGEM: SOLICITADO
-`;
-
-    itensDesmontagem.forEach((item, index) => {
-      mensagem += `${index + 1}. ${item.nome}\n`;
-    });
-
-    mensagem += `
-📸 Enviarei fotos dos móveis a serem desmontados pelo WhatsApp.
-`;
-
-  } else {
-
-    mensagem += `
-🛠️ Desmontagem e montagem: Não solicitado
-`;
-
-  }
-
-  // CAIXAS DE PAPELÃO
-
-  const precisaCaixas = document.getElementById(
-    "precisaCaixas"
-  ).checked;
-
-  if (precisaCaixas) {
-
-    const quantidade = parseInt(
-      document.getElementById("quantidadeCaixas").value
-    ) || 0;
-
-    if (quantidade < 1) {
-      alert("Informe uma quantidade válida de caixas.");
-      return;
-    }
-
-    const total = quantidade * 3;
-
-    mensagem += `
-📦 CAIXAS DE PAPELÃO:
-Quantidade: ${quantidade}
-Valor por unidade: R$ 3,00
-Total das caixas: ${total.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL"
-    })}
-`;
-
-  } else {
-
-    mensagem += `
-📦 Caixas de papelão: Não necessita
-`;
-
-  }
-
-  mensagem += `
-Aguardo o orçamento. Obrigado!`;
-
-  const telefone = "5514996756241";
-
-  const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
-
-  window.open(url, "_blank");
-
+  window.open(`https://wa.me/5514996756241?text=${encodeURIComponent(msg)}`, "_blank");
 }
-
 </script>
 
 </body>
