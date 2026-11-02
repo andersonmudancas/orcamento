@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -166,6 +165,35 @@ button:hover {
   margin-top: 10px;
   font-weight: bold;
   font-size: 1.1em;
+  color: var(--azul);
+}
+
+.caixa-medidas {
+  margin-top: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.caixa-medidas svg {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.caixa-legenda {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: var(--texto);
+}
+
+.caixa-legenda strong {
   color: var(--azul);
 }
 
@@ -403,6 +431,35 @@ Para facilitar o orçamento, envie fotos de todos os móveis que precisam de des
 </div>
 </div>
 
+<!-- EMBALAGEM DE MÓVEIS -->
+
+<div class="opcao-servico">
+
+<label>
+<input type="checkbox" id="servicoEmbalagem"
+onchange="toggleEmbalagem()">
+Embalagem de móveis
+</label>
+
+<div id="areaEmbalagem" style="display:none;" class="info-servico">
+
+<p><strong>Informe os móveis ou itens que precisam ser embalados.</strong></p>
+
+<button type="button" onclick="abrirModalEmbalagem()">
+➕ Adicionar móvel ou item
+</button>
+
+<div id="listaItensEmbalagem" class="lista-itens"></div>
+
+<div class="aviso-fotos">
+📸 <strong>Envie fotos dos itens a serem embalados pelo WhatsApp.</strong>
+<br><br>
+Para facilitar o orçamento, envie fotos de todos os móveis ou itens informados para embalagem após abrir a conversa.
+</div>
+
+</div>
+</div>
+
 <!-- CAIXAS DE PAPELÃO -->
 
 <div class="opcao-servico">
@@ -418,6 +475,41 @@ Preciso de caixas de papelão para embalar
 <p>📦 Valor de cada caixa:</p>
 
 <div class="valor-caixa">R$ 3,00 por unidade</div>
+
+<div class="caixa-medidas">
+  <svg viewBox="0 0 320 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Desenho da caixa de papelão com as medidas 50cm de comprimento, 30cm de largura e 32cm de altura">
+    <!-- face de cima (profundidade/largura) -->
+    <polygon points="70,46 220,46 250,16 100,16" fill="#e4c89a" stroke="#8a6a3a" stroke-width="2"/>
+    <!-- face da frente (comprimento x altura) -->
+    <rect x="70" y="46" width="150" height="110" fill="#f3d9ab" stroke="#8a6a3a" stroke-width="2"/>
+    <!-- face lateral (largura x altura) -->
+    <polygon points="220,46 250,16 250,126 220,156" fill="#dcb787" stroke="#8a6a3a" stroke-width="2"/>
+    <!-- aba superior -->
+    <line x1="70" y1="46" x2="100" y2="16" stroke="#8a6a3a" stroke-width="2"/>
+
+    <!-- medida: comprimento (base frente) -->
+    <line x1="70" y1="178" x2="220" y2="178" stroke="#0878D1" stroke-width="1.5"/>
+    <line x1="70" y1="172" x2="70" y2="184" stroke="#0878D1" stroke-width="1.5"/>
+    <line x1="220" y1="172" x2="220" y2="184" stroke="#0878D1" stroke-width="1.5"/>
+    <text x="145" y="196" text-anchor="middle" font-size="13" fill="#0878D1" font-family="Arial, sans-serif" font-weight="bold">50 cm</text>
+
+    <!-- medida: altura (lado esquerdo) -->
+    <line x1="48" y1="46" x2="48" y2="156" stroke="#0878D1" stroke-width="1.5"/>
+    <line x1="42" y1="46" x2="54" y2="46" stroke="#0878D1" stroke-width="1.5"/>
+    <line x1="42" y1="156" x2="54" y2="156" stroke="#0878D1" stroke-width="1.5"/>
+    <text x="30" y="105" text-anchor="middle" font-size="13" fill="#0878D1" font-family="Arial, sans-serif" font-weight="bold" transform="rotate(-90 30 105)">32 cm</text>
+
+    <!-- medida: largura (topo, face lateral) -->
+    <line x1="233" y1="22" x2="263" y2="-8" stroke="#0878D1" stroke-width="0" />
+    <text x="278" y="80" text-anchor="middle" font-size="13" fill="#0878D1" font-family="Arial, sans-serif" font-weight="bold">30 cm</text>
+    <line x1="222" y1="40" x2="248" y2="12" stroke="#0878D1" stroke-width="1.5" stroke-dasharray="3,3"/>
+  </svg>
+  <div class="caixa-legenda">
+    <span>📏 Comprimento: <strong>50 cm</strong></span>
+    <span>📏 Largura: <strong>30 cm</strong></span>
+    <span>📏 Altura: <strong>32 cm</strong></span>
+  </div>
+</div>
 
 <div class="form-field" style="margin-top:15px;">
 <label>Quantidade de caixas</label>
@@ -489,6 +581,44 @@ Cancelar
 </div>
 </dialog>
 
+<!-- MODAL DE EMBALAGEM -->
+
+<dialog id="modalEmbalagem" class="modal">
+
+<div class="modal-conteudo">
+
+<h2>📦 Embalagem de Móveis</h2>
+
+<div class="form-field">
+<label>Nome do móvel ou item</label>
+<input type="text" id="nomeItemEmbalagem"
+placeholder="Ex: Louças, quadros, espelho, abajur...">
+</div>
+
+<div class="aviso-fotos">
+📸 <strong>Envie fotos dos itens a serem embalados pelo WhatsApp.</strong>
+
+<p>
+Após preencher os itens, você poderá enviar as fotos diretamente na conversa do WhatsApp.
+</p>
+</div>
+
+<div class="modal-acoes">
+
+<button type="button" onclick="adicionarItemEmbalagem()">
+Salvar item
+</button>
+
+<button type="button" class="btn-cancelar"
+onclick="fecharModalEmbalagem()">
+Cancelar
+</button>
+
+</div>
+
+</div>
+</dialog>
+
 <script>
 
 // CONTROLE DOS TIPOS DE IMÓVEL
@@ -540,7 +670,7 @@ function fecharModal() {
   modal.close();
 }
 
-// ADICIONAR ITEM
+// ADICIONAR ITEM (DESMONTAGEM)
 
 function adicionarItem() {
 
@@ -559,7 +689,7 @@ function adicionarItem() {
   modal.close();
 }
 
-// ATUALIZAR LISTA
+// ATUALIZAR LISTA (DESMONTAGEM)
 
 function atualizarListaItens() {
 
@@ -594,6 +724,89 @@ function atualizarListaItens() {
 function removerItem(index) {
   itensDesmontagem.splice(index, 1);
   atualizarListaItens();
+}
+
+// EMBALAGEM DE MÓVEIS
+
+const modalEmbalagem = document.getElementById("modalEmbalagem");
+
+let itensEmbalagem = [];
+
+function toggleEmbalagem() {
+
+  const marcado = document.getElementById("servicoEmbalagem").checked;
+
+  document.getElementById("areaEmbalagem").style.display =
+    marcado ? "block" : "none";
+
+  if (marcado && itensEmbalagem.length === 0) {
+    abrirModalEmbalagem();
+  }
+}
+
+function abrirModalEmbalagem() {
+  document.getElementById("nomeItemEmbalagem").value = "";
+  modalEmbalagem.showModal();
+}
+
+function fecharModalEmbalagem() {
+  modalEmbalagem.close();
+}
+
+// ADICIONAR ITEM (EMBALAGEM)
+
+function adicionarItemEmbalagem() {
+
+  const nome = document.getElementById("nomeItemEmbalagem").value.trim();
+
+  if (!nome) {
+    alert("Informe o nome do móvel ou item.");
+    return;
+  }
+
+  itensEmbalagem.push({
+    nome: nome
+  });
+
+  atualizarListaItensEmbalagem();
+  modalEmbalagem.close();
+}
+
+// ATUALIZAR LISTA (EMBALAGEM)
+
+function atualizarListaItensEmbalagem() {
+
+  const lista = document.getElementById("listaItensEmbalagem");
+  lista.innerHTML = "";
+
+  itensEmbalagem.forEach((item, index) => {
+
+    const div = document.createElement("div");
+    div.className = "item-cadastrado";
+
+    const titulo = document.createElement("strong");
+    titulo.textContent = "📦 " + item.nome;
+
+    const excluir = document.createElement("button");
+    excluir.type = "button";
+    excluir.textContent = "Excluir item";
+
+    excluir.onclick = function() {
+      removerItemEmbalagem(index);
+    };
+
+    div.appendChild(titulo);
+    div.appendChild(document.createElement("br"));
+    div.appendChild(excluir);
+
+    lista.appendChild(div);
+  });
+
+}
+
+function removerItemEmbalagem(index) {
+  itensEmbalagem.splice(index, 1);
+  atualizarListaItensEmbalagem();
 }
 
 // CAIXAS DE PAPELÃO
@@ -645,6 +858,14 @@ function enviarWhatsApp() {
     itensDesmontagem.length === 0
   ) {
     alert("Adicione pelo menos um móvel para desmontagem e montagem.");
+    return;
+  }
+
+  if (
+    document.getElementById("servicoEmbalagem").checked &&
+    itensEmbalagem.length === 0
+  ) {
+    alert("Adicione pelo menos um móvel ou item para embalagem.");
     return;
   }
 
@@ -709,6 +930,35 @@ ${itens}
 
     mensagem += `
 🛠️ Desmontagem e montagem: Não solicitado
+`;
+
+  }
+
+  // EMBALAGEM DE MÓVEIS
+
+  const embalagem = document.getElementById(
+    "servicoEmbalagem"
+  ).checked;
+
+  if (embalagem) {
+
+    mensagem += `
+
+📦 EMBALAGEM DE MÓVEIS: SOLICITADO
+`;
+
+    itensEmbalagem.forEach((item, index) => {
+      mensagem += `${index + 1}. ${item.nome}\n`;
+    });
+
+    mensagem += `
+📸 Enviarei fotos dos itens a serem embalados pelo WhatsApp.
+`;
+
+  } else {
+
+    mensagem += `
+📦 Embalagem de móveis: Não solicitado
 `;
 
   }
